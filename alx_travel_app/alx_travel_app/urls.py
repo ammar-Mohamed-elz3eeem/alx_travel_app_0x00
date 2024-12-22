@@ -16,8 +16,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from drf_yasg import views, openapi
+from rest_framework import permissions
+
+schema_view = views.get_schema_view(
+    openapi.Info(
+        title="ALX Travel App API",
+        default_version="v1",
+        description="This is a simple travel app made using django",
+        terms_of_service="https://www.google.com/policies/terms/",
+        contact=openapi.Contact(email="ammar@wpkama.com"),
+        license=openapi.License(name="BSD License")
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,)
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('listing.urls'))
+    path('', include('listing.urls')),
+    path('api-auth/', include("rest_framework.urls", namespace='rest_framework')),
+    path('swagger', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui')
 ]
