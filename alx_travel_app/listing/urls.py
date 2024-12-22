@@ -7,9 +7,10 @@ from .views import (
 )
 
 router = routers.DefaultRouter()
-router.register(r'listings/', ListingViewSet, basename='listing'),
-router.register(r'booking/', BookingViewSet, basename='booking'),
-router.register(r'reviews/', ReviewViewSet, basename='review'),
+router.register(r'listings', ListingViewSet)
+router.register(r'bookings', BookingViewSet)
+router.register(r'reviews', ReviewViewSet)
+
 
 urlpatterns = [
     path('', include(router.urls))
