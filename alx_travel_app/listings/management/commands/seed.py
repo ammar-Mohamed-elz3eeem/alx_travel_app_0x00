@@ -1,6 +1,6 @@
 from django.core.management import BaseCommand
 from django.contrib.auth.models import User
-from listing.models import Listing, Booking, Review
+from listings.models import Listing, Booking, Review
 from faker import Faker
 from random import randint
 fake = Faker()

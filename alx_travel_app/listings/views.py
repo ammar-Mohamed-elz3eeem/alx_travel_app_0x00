@@ -1,10 +1,12 @@
 from django.shortcuts import render
+from django.contrib.auth.models import User
 from rest_framework.viewsets import ModelViewSet
 from rest_framework import permissions
 from .serializers import (
     ListingSerializer,
     BookingSerializer,
-    ReviewSerializer
+    ReviewSerializer,
+    UserSerializer
 )
 from .models import Listing, Booking, Review
 
@@ -24,4 +26,10 @@ class BookingViewSet(ModelViewSet):
 class ReviewViewSet(ModelViewSet):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
+    permission_classes = (permissions.AllowAny,)
+
+
+class UserViewSet(ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
     permission_classes = (permissions.AllowAny,)

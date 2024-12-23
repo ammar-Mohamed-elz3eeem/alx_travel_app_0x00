@@ -28,8 +28,8 @@ class Booking(models.Model):
         ('CANCELED', 'canceled'),
     )
     booking_id = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
-    listing_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='listing_bookings')
-    user_id = models.ForeignKey(Listing, on_delete=models.CASCADE, related_name='user_bookings')
+    listing_id = models.ForeignKey(Listing, on_delete=models.CASCADE, related_name='listing_bookings')
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_bookings')
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
     total_price = models.DecimalField(decimal_places=2, max_digits=7)
@@ -47,8 +47,8 @@ class Review(models.Model):
         ('CANCELED', 'canceled'),
     )
     review_id = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
-    listing_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_reviews')
-    user_id = models.ForeignKey(Listing, on_delete=models.CASCADE, related_name='listing_reviews')
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_reviews')
+    listing_id = models.ForeignKey(Listing, on_delete=models.CASCADE, related_name='listing_reviews')
     rating = models.IntegerField(validators=(validators.MinValueValidator, validators.MaxValueValidator))
     comment = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
