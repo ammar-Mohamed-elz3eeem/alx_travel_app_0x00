@@ -5,3 +5,4 @@ drf-yasg
 django-environ
 mysql-connector-python
 celery
+faker
